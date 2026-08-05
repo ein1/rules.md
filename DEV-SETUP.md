@@ -1,9 +1,5 @@
 # Windows 11 고정 개발환경 구축 지침
 
-> 기준 상태 확인일: 2026-08-06 (Asia/Seoul)  
-> 대상: Windows 11 x64, PowerShell 7  
-> 목적: 모든 개발 에이전트가 이 PC에 아래의 동일한 개발환경을 한 번 구축하고 더 이상 변경하지 않는다.
-
 ## 1. 절대 규칙
 
 1. 이 문서에 적힌 도구, 버전 제약, 설치 방식, 설치 경로를 그대로 사용한다.
@@ -307,6 +303,7 @@ C:\dev\tools\railway-5.30.4
 | `eamodio.gitlens` | `18.3.0` |
 | `gruntfuggly.todo-tree` | `0.0.226` |
 | `humao.rest-client` | `0.25.1` |
+| `pkief.material-icon-theme` | `5.37.0` |
 
 설치 형식은 다음과 같다.
 
