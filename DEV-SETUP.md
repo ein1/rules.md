@@ -85,7 +85,7 @@ Windows용 FFmpeg는 FFmpeg 공식 다운로드 페이지가 안내하는 gyan.d
 | Gradle | `9.6.1` | `9` stable | `gradle-9.6.1-bin.zip` | `C:\dev\tools\gradle-9.6.1` |
 | Flutter | `3.44.8` stable | `3.44` stable | `flutter_windows_3.44.8-stable.zip` | `C:\dev\tools\flutter-3.44.8` |
 | Android Command-line Tools | `22.0` | `22` stable | `commandlinetools-win-15859902_latest.zip` | `C:\dev\tools\android-sdk\cmdline-tools\latest` |
-| PostgreSQL | `17.10` | `17` stable | `postgresql-17.10-1-windows-x64-binaries.zip` | `C:\dev\tools\postgresql-17.10` |
+| PostgreSQL | `18.4` | `18` stable | `postgresql-18.4-1-windows-x64-binaries.zip` | `C:\dev\tools\postgresql-18.4` |
 | Railway CLI | `5.30.4` stable | `5` stable | `railway-v5.30.4-x86_64-pc-windows-msvc.zip` | `C:\dev\tools\railway-5.30.4` |
 
 ### 2.4 Android SDK 고정 구성
@@ -159,7 +159,7 @@ winget install --id Gyan.FFmpeg -e --version 9.0 --source winget --location 'C:\
 | Gradle | `https://services.gradle.org/distributions/gradle-9.6.1-bin.zip` |
 | Flutter | `https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_3.44.8-stable.zip` |
 | Android CLI | `https://dl.google.com/android/repository/commandlinetools-win-15859902_latest.zip` |
-| PostgreSQL | `https://get.enterprisedb.com/postgresql/postgresql-17.10-1-windows-x64-binaries.zip` |
+| PostgreSQL | `https://get.enterprisedb.com/postgresql/postgresql-18.4-1-windows-x64-binaries.zip` |
 | Railway CLI | `https://github.com/railwayapp/cli/releases/download/v5.30.4/railway-v5.30.4-x86_64-pc-windows-msvc.zip` |
 
 현재 검증 URL에서 파일을 받을 수 없을 때는 다음 공식 릴리스 목록만 사용한다.
@@ -190,7 +190,7 @@ C:\dev\tools\apache-maven-3.9.16\bin\mvn.cmd
 C:\dev\tools\gradle-9.6.1\bin\gradle.bat
 C:\dev\tools\flutter-3.44.8\bin\flutter.bat
 C:\dev\tools\android-sdk\cmdline-tools\latest\bin\sdkmanager.bat
-C:\dev\tools\postgresql-17.10\bin\psql.exe
+C:\dev\tools\postgresql-18.4\bin\psql.exe
 C:\dev\tools\railway-5.30.4\railway.exe
 ```
 
@@ -269,7 +269,7 @@ C:\dev\tools\flutter-3.44.8\bin
 C:\dev\tools\android-sdk\cmdline-tools\latest\bin
 C:\dev\tools\android-sdk\platform-tools
 C:\dev\tools\android-sdk\emulator
-C:\dev\tools\postgresql-17.10\bin
+C:\dev\tools\postgresql-18.4\bin
 C:\dev\tools\railway-5.30.4
 ```
 
@@ -376,7 +376,7 @@ Flutter 3.44.8 stable
 CMake 4.4.1
 Ninja 1.13.2
 FFmpeg 9.0
-PostgreSQL 17.10
+PostgreSQL 18.4
 Railway CLI 5.30.4
 flutter doctor: No issues found!
 ```
