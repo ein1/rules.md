@@ -9,7 +9,7 @@
 5. EXE, MSI, MSIX 설치 프로그램으로 설치하는 도구는 설치 프로그램의 기본 경로를 사용한다. 사용자 지정 설치 경로를 사용하지 않는다.
 6. 설치 프로그램이 없는 ZIP 또는 단일 실행 파일은 `C:\dev\tools\<도구-실제버전>`에 둔다.
 7. WinGet 포터블 패키지는 반드시 문서에 적힌 `--location` 규칙으로 설치한다.
-8. `npm install -g`, `npm update -g`, `pnpm add -g`, `pnpm setup`, `npm config set prefix`를 실행하지 않는다.
+8. `npm install -g`, `npm update -g`, `pnpm add -g`, `pnpm setup`, `npm config set prefix`를 실행하지 않는다. 유일한 예외는 이 문서에 명시한 Cloudflare Wrangler의 최초 전역 설치 명령 `npm install --global wrangler@latest`이다.
 9. npm 레지스트리의 동명 패키지나 래퍼로 이 문서의 시스템 도구를 대체하지 않는다.
 10. Yarn은 설치하지 않는다. npm은 Node.js에 포함된 버전을 사용하며 별도로 설치하거나 승격하지 않는다.
 11. 설치 프로그램, WinGet, VS Code Extension Pack 등이 자동 관리하는 의존 항목은 별도로 설치·이동·고정·기록하지 않는다.
@@ -85,10 +85,20 @@ Windows용 FFmpeg는 FFmpeg 공식 다운로드 페이지가 안내하는 gyan.d
 | Gradle | `9.6.1` | `9` stable | `gradle-9.6.1-bin.zip` | `C:\dev\tools\gradle-9.6.1` |
 | Flutter | `3.44.8` stable | `3.44` stable | `flutter_windows_3.44.8-stable.zip` | `C:\dev\tools\flutter-3.44.8` |
 | Android Command-line Tools | `22.0` | `22` stable | `commandlinetools-win-15859902_latest.zip` | `C:\dev\tools\android-sdk\cmdline-tools\latest` |
-| PostgreSQL | `18.4` | `18` stable | `postgresql-18.4-1-windows-x64-binaries.zip` | `C:\dev\tools\postgresql-18.4` |
+| PostgreSQL | `18` stable | `18` stable | PostgreSQL 18 Windows x64 binaries | `C:\dev\tools\postgresql-18` |
 | Railway CLI | `5.30.4` stable | `5` stable | `railway-v5.30.4-x86_64-pc-windows-msvc.zip` | `C:\dev\tools\railway-5.30.4` |
 
-### 2.4 Android SDK 고정 구성
+Railway PostgreSQL 이미지 태그는 `postgres-ssl:18`을 사용한다.
+
+### 2.4 npm 전역 설치 유일 예외
+
+| 도구 | 현재 검증 버전 | 선택 규칙 | 설치 방식 | 설치 위치 |
+|---|---:|---|---|---|
+| Cloudflare Wrangler CLI | `4.119.0` stable | 최초 설치 시 npm `latest` stable | npm 전역 설치 | `C:\Users\myein\AppData\Roaming\npm` |
+
+Wrangler는 이 문서에서 npm 전역 설치를 허용하는 유일한 도구다. 최초 설치가 끝나면 실제 설치 버전 `4.119.0`을 고정하며, 이후 `npm update -g` 또는 재설치를 실행하지 않는다.
+
+### 2.5 Android SDK 고정 구성
 
 | 구성요소 | 현재 검증 버전 | 허용 범위 |
 |---|---:|---|
@@ -159,7 +169,6 @@ winget install --id Gyan.FFmpeg -e --version 9.0 --source winget --location 'C:\
 | Gradle | `https://services.gradle.org/distributions/gradle-9.6.1-bin.zip` |
 | Flutter | `https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_3.44.8-stable.zip` |
 | Android CLI | `https://dl.google.com/android/repository/commandlinetools-win-15859902_latest.zip` |
-| PostgreSQL | `https://get.enterprisedb.com/postgresql/postgresql-18.4-1-windows-x64-binaries.zip` |
 | Railway CLI | `https://github.com/railwayapp/cli/releases/download/v5.30.4/railway-v5.30.4-x86_64-pc-windows-msvc.zip` |
 
 현재 검증 URL에서 파일을 받을 수 없을 때는 다음 공식 릴리스 목록만 사용한다.
@@ -180,7 +189,7 @@ winget install --id Gyan.FFmpeg -e --version 9.0 --source winget --location 'C:\
 3. 선택한 파일은 공식 배포처에서만 받는다.
 4. 압축 해제 폴더는 `C:\dev\tools\<도구-선택버전>`으로 만든다. Android SDK만 고정 경로 `C:\dev\tools\android-sdk`를 사용한다.
 5. 선택한 실제 버전에 맞게 시스템 환경 변수와 PATH를 변경한다.
-6. 6절 검증을 완료한 뒤 이 문서의 현재 검증 버전, 파일명, URL, 설치 경로를 실제 값으로 교체한다.
+6. 7절 검증을 완료한 뒤 이 문서의 현재 검증 버전, 파일명, URL, 설치 경로를 실제 값으로 교체한다.
 7. 비공식 미러, npm 래퍼, 임의 재패키징 파일은 사용하지 않는다.
 
 현재 검증 버전의 압축 해제 결과는 다음 형태다. 보수적 승격을 사용했다면 경로의 버전 부분만 선택한 실제 버전으로 바꾼다.
@@ -190,13 +199,32 @@ C:\dev\tools\apache-maven-3.9.16\bin\mvn.cmd
 C:\dev\tools\gradle-9.6.1\bin\gradle.bat
 C:\dev\tools\flutter-3.44.8\bin\flutter.bat
 C:\dev\tools\android-sdk\cmdline-tools\latest\bin\sdkmanager.bat
-C:\dev\tools\postgresql-18.4\bin\psql.exe
+C:\dev\tools\postgresql-18\bin\psql.exe
 C:\dev\tools\railway-5.30.4\railway.exe
 ```
 
-### 3.4 Python과 Android SDK
+### 3.4 Cloudflare Wrangler
 
-다음은 현재 검증 버전의 명령이다. Python 3.14.6을 uv가 더 이상 제공하지 않을 때만 `3.14` 계열의 최신 stable 패치 버전으로 숫자를 바꾸고 실제 설치 경로를 문서에 반영한다. Android 구성요소는 `--channel=0`의 stable만 사용하며 2.4절의 허용 범위를 지킨다.
+PC 공용 CLI는 다음 명령으로 한 번만 설치한다. npm의 기본 전역 prefix를 변경하지 않는다.
+
+```powershell
+npm install --global wrangler@latest
+wrangler --version
+```
+
+현재 설치 결과는 `4.119.0`이며 명령 파일은 `C:\Users\myein\AppData\Roaming\npm`에 있다. 이 경로는 4.2절에 따라 시스템 PATH에 등록한다. `WRANGLER_HOME`이나 `NPM_HOME`은 만들지 않는다.
+
+Cloudflare Workers 프로젝트가 Wrangler를 프로젝트 `devDependencies`로 요구할 때 사용하는 공식 형식은 다음과 같다. 이 명령은 해당 프로젝트 폴더에서만 실행하며 PC 공용 CLI 설치를 뜻하지 않는다.
+
+```powershell
+npm install -D wrangler@latest
+```
+
+공식 설치 문서: `https://developers.cloudflare.com/workers/wrangler/install-and-update/`
+
+### 3.5 Python과 Android SDK
+
+다음은 현재 검증 버전의 명령이다. Python 3.14.6을 uv가 더 이상 제공하지 않을 때만 `3.14` 계열의 최신 stable 패치 버전으로 숫자를 바꾸고 실제 설치 경로를 문서에 반영한다. Android 구성요소는 `--channel=0`의 stable만 사용하며 2.5절의 허용 범위를 지킨다.
 
 ```powershell
 $env:UV_PYTHON_INSTALL_DIR = 'C:\dev\tools\python'
@@ -234,7 +262,7 @@ flutter config --android-sdk 'C:\dev\tools\android-sdk'
 | `UV_INSTALL_DIR` | `C:\dev\tools\uv-0.12.0` |
 | `UV_PYTHON_INSTALL_DIR` | `C:\dev\tools\python` |
 
-`POSTGRESQL_HOME`, `RAILWAY_HOME`, `PGDATA`, `NPM_HOME`은 등록하지 않는다.
+`POSTGRESQL_HOME`, `RAILWAY_HOME`, `WRANGLER_HOME`, `PGDATA`, `NPM_HOME`은 등록하지 않는다.
 
 ### 4.2 시스템 PATH
 
@@ -249,6 +277,7 @@ C:\Program Files\Microsoft\jdk-25.0.4.7-hotspot\bin
 C:\Program Files\CMake\bin
 C:\Program Files\7-Zip
 C:\Users\myein\AppData\Local\Programs\Microsoft VS Code\bin
+C:\Users\myein\AppData\Roaming\npm
 C:\dev\tools\jq-1.8.2
 C:\dev\tools\yq-4.53.3
 C:\dev\tools\ripgrep-15.2.0\ripgrep-15.2.0-x86_64-pc-windows-msvc
@@ -269,7 +298,7 @@ C:\dev\tools\flutter-3.44.8\bin
 C:\dev\tools\android-sdk\cmdline-tools\latest\bin
 C:\dev\tools\android-sdk\platform-tools
 C:\dev\tools\android-sdk\emulator
-C:\dev\tools\postgresql-18.4\bin
+C:\dev\tools\postgresql-18\bin
 C:\dev\tools\railway-5.30.4
 ```
 
@@ -313,7 +342,31 @@ code --install-extension <확장ID>@<선택버전> --force
 
 표의 현재 검증 버전을 Marketplace에서 더 이상 받을 수 없을 때만 동일한 메이저·마이너 계열의 최신 stable 패치 버전을 설치한다. Pre-Release는 사용하지 않으며 선택한 실제 버전을 표에 기록한다.
 
-## 6. 최종 검증
+## 6. 설치 완료 후 필수 인증
+
+모든 설치와 시스템 PATH 등록을 마친 뒤 새 PowerShell 7을 열고 다음 인증을 순서대로 완료한다. 브라우저가 열리면 이 PC에서 사용할 각 서비스 계정으로 승인한다.
+
+```powershell
+gh auth login
+railway login
+npx wrangler login
+```
+
+인증 완료 후 다음 명령이 로그인된 계정을 정상 표시해야 한다.
+
+```powershell
+gh auth status
+railway whoami
+npx wrangler whoami
+```
+
+로그인 토큰을 문서, 프로젝트 파일 또는 환경 변수에 직접 기록하지 않는다.
+
+- GitHub CLI 인증 문서: `https://cli.github.com/manual/gh_auth_login`
+- Railway CLI 인증 문서: `https://docs.railway.com/cli/login`
+- Wrangler 인증 문서: `https://developers.cloudflare.com/workers/wrangler/commands/general/#login`
+
+## 7. 최종 검증
 
 새 PowerShell 7에서 다음 명령을 실행한다.
 
@@ -353,6 +406,7 @@ postgres --version
 pg_ctl --version
 initdb --version
 railway --version
+wrangler --version
 flutter doctor -v
 code --list-extensions --show-versions
 ```
@@ -376,8 +430,9 @@ Flutter 3.44.8 stable
 CMake 4.4.1
 Ninja 1.13.2
 FFmpeg 9.0
-PostgreSQL 18.4
+PostgreSQL 18
 Railway CLI 5.30.4
+Cloudflare Wrangler CLI 4.119.0
 flutter doctor: No issues found!
 ```
 
